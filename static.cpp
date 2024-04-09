@@ -14,7 +14,7 @@ static int g_iStatic = 0;
 
 int addA() {
     ++a;
-}
+};
 
 int main() {
 
@@ -22,10 +22,5 @@ int main() {
     addA();
     addA();
 
-    g_iStatic++;
-
-    printf("a = %d\n", a);
-    printf("g_istatic = %d\n", g_iStatic);
-    
     return 0;
 }
