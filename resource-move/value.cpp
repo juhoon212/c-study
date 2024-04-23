@@ -13,7 +13,7 @@ void storeByLRef(std::string &s) {
     std::string b = s;
 }
 
-void storeByRRef(std::string && s) { // rvalue 참조(별명 붙이기)
+void storeByRRef(std::string && s) { // s는 lvalue가 될수 있기 때문에 s를 rvalue로 만들어주어야함
     std::string b = std::move(s); // wrong!
     std::cout << b << std::endl;
 }
