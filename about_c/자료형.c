@@ -11,3 +11,7 @@
 // long double => 8byte 이상 32bit => 12byte 64bit => 16byte
 // size_t , ssize_t 4byte 64bit => 8byte
 // * => 4byte(32bit) , 8byte (64bit)
+
+int main() {
+    return 0;
+}
