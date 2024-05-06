@@ -20,11 +20,9 @@ int main(void) {
     printf("a1 = %d\n", a1);
     printf("a2 = %d\n", a2);
 
-    double a3 = (a1 + a2) / 2;
 
-    printf("%f", a3);
 
-    printf("AVG: %d\n", a1 + a2);
+    printf("AVG: %.2f\n", (a1 + a2) / 2.0);
     
 
     return 0;
