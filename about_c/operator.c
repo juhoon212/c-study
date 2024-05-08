@@ -20,8 +20,6 @@ int main(void) {
     printf("a1 = %d\n", a1);
     printf("a2 = %d\n", a2);
 
-
-
     printf("AVG: %.2f\n", (a1 + a2) / 2.0);
     
 
