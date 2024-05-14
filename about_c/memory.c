@@ -37,6 +37,8 @@ int main(void) {
 
     free(pszData);
 
+    // TODO realloc() 공부
+
     
     
     

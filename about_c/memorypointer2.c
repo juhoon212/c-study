@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <malloc/malloc.h>
 
 int main(void) {
 
@@ -18,6 +20,10 @@ int main(void) {
         printf("%d\n", *paList);
         paList++;
     }
+
+    
+
+    
     
     
     return 0;
