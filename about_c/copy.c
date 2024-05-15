@@ -6,21 +6,18 @@ int main(void) {
 
     char szSrcBuf[12] = {"Hello"};
     char szDstBuf[12] = {0};
-    char* pszData = NULL;
+    char* pszData = (char*)malloc(sizeof(char) * 12);
+
 
     //Deep Copy => 내용 복사
     memcpy(szDstBuf, szSrcBuf, sizeof(szSrcBuf));
 
     // shallow copy => 주소를 복사
-    pszData = szSrcBuf;
+    // pszData = szSrcBuf;
+    memcpy(pszData, szDstBuf, sizeof(szDstBuf));
 
-    pszData[0] = 'x';
-
-    printf("%s\n", pszData);
-    printf("%s\n", szSrcBuf);
-    printf("%p\n", szSrcBuf);
-    
-    printf("%p\n", pszData);
+    puts(pszData);
+    free(pszData);
 
     
 
