@@ -19,6 +19,17 @@ int main(void) {
     puts(pszData);
     free(pszData);
 
+    char szSrcBuf2[12] = {"Hello"};
+    char szDstBuf2[12] = {0};
+
+    memcpy(szDstBuf2, szSrcBuf2, sizeof(szSrcBuf2));
+
+    if (memcmp(szSrcBuf2, szDstBuf2, sizeof(szSrcBuf2)) == 0) {
+        puts("same");
+    } else {
+        puts("diff");
+    }
+
     
 
     return 0;
