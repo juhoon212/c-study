@@ -6,17 +6,14 @@
 typedef struct NODE {
     char szData[64];
     struct NODE* next;
-
 } NODE;
 
-NODE* g_pHead = NULL;
+NODE* head = NULL;
 
-// 연결 리스트 전체 데이터 출력
 void printList(void) {
-
-    NODE* pHead = g_pHead;
+    NODE* pHead = head;
     while (pHead != NULL) {
-        printf("[%p] %s, next[%p]\n", pHead, pHead->szData, pHead->next);
+        printf("CUR : [%p] %s, NEXT : [%p]\n", pHead, pHead->szData, pHead->next);
         pHead = pHead->next;
     }
 
@@ -24,35 +21,29 @@ void printList(void) {
 }
 
 int InsertNewNode(char* pszData) {
+    // 생성
     NODE* pNode = (NODE*)malloc(sizeof(NODE));
     memset(pNode, 0, sizeof(NODE));
-    printf("pNode: %d\n", malloc_size(pNode));
     strcpy(pNode->szData, pszData);
 
-    if(g_pHead == NULL) {
-        printf("NULL OK");
-        g_pHead = pNode; // 얕은 복사
+    if (head == NULL) {
+        head = pNode;
     } else {
-        printf("NULL NOT OK");
-        pNode->next = g_pHead;
-        g_pHead = pNode;
+        pNode->next = head;
+        head = pNode;
     }
     return 1;
 }
 
-    
 
+int main(void) {
 
-int main() {
-
-    // List 테스트를 위한 코드
     InsertNewNode("TEST01");
     printList();
     InsertNewNode("TEST02");
     printList();
     InsertNewNode("TEST03");
     printList();
-    
 
     return 0;
 }
