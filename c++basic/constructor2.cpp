@@ -32,11 +32,16 @@ class Rectangle {
         int getLowright() {
             return lowRight.getNum();
         }
+        ~Rectangle() {
+            std::cout << "소멸자 호출" << std::endl;
+        }
 };
 
 int main() {
     Rectangle* rec1 = new Rectangle(1,2,3,4);
     std::cout << rec1->getUpleft() << std::endl;
     std::cout << rec1->getLowright() << std::endl;
+
+    delete rec1;
     return 0;
 }
