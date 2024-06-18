@@ -8,6 +8,7 @@ typedef struct NODE {
 } NODE;
 
 NODE g_head = { 0 }; // DUMMY HEAD
+NODE* g_pTail = 0;
 
 int isEmpty() {
     if (g_head.next == NULL) {
@@ -23,28 +24,26 @@ int insertHead(char* pszData) {
     strcpy(newNode->szData, pszData);
 
     if (isEmpty()) {
+        // 리스트에 추가된 첫 번째 데이터 처리
         g_head.next = newNode;
+        
     } else {
-        newNode->next = g_head.next;
-        g_head.next = newNode;
+        g_pTail->next = newNode;
     }
+    
+    g_pTail = newNode;
 
     return 0;
 }
 
 int insertTail(char* pszData) {
     
-    NODE* pTemp = &g_head;
-    
-    while (pTemp->next != NULL) {
-        pTemp = pTemp->next;
-    }
-
     NODE* newNode = (NODE*)malloc(sizeof(NODE));
     memset(newNode, 0 , sizeof(NODE));
     strcpy(newNode->szData, pszData);
 
-    pTemp->next = newNode;
+    
+
     return 0;
     
 }
@@ -75,6 +74,11 @@ int deleteNode(char* pszData) {
         findedNode->next = pDelete->next;
 
         printf("DELETE : [%p], %s, next[%p]\n", pDelete, pDelete->szData, pDelete->next);
+
+        if (pDelete == g_pTail) {
+            g_pTail = NULL;
+        }
+
         free(pDelete);
     }
     
@@ -104,6 +108,7 @@ void deleteList() {
     }
 
     g_head.next = NULL;
+    g_pTail = NULL;
 }
 
 

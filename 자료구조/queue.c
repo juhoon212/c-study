@@ -67,5 +67,6 @@ int main() {
     dequeue(&node);
 
     printList();
+    
     return 0;
 }
