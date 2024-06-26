@@ -47,13 +47,60 @@ int insertNode(int data) {
     return 1;
 }
 
-void preOrderPrintTree(NODE* node) {
+void inOrderPrintTree(NODE* node) {
     if (node != NULL) {
-        preOrderPrintTree(node->left);
+        inOrderPrintTree(node->left);
         printf("cur : [%p], data : %d\n", node, node->data);
-        preOrderPrintTree(node->right);
+        inOrderPrintTree(node->right);
     } else {
         return;
+    }
+}
+
+NODE* findNode(NODE* root, int data) {
+
+    if (root == NULL) {
+        return NULL;
+    }
+    
+    if (data < root->data) {
+        findNode(root->left, data);
+    } else if (data > root->data) {
+        findNode(root->right, data);
+    } else {
+        return root;
+    }
+
+    return NULL;
+}
+
+NODE* findMinNode() {
+
+}
+
+NODE* deleteNode(NODE* node, int data) {
+    if (node == NULL) {
+        return NULL;
+    }
+
+    // 삭제할 노드를 찾았을 때
+    if (node->data == data) {
+        // 자식 노드가 있는지 없는지 확인
+        NODE* deleteNode = node;
+        NODE* pTemp = NULL;
+        // 자식이 둘다 있을 때(left, right)
+        if (node->left != NULL && node->right != NULL) {
+            // 둘중 누가 작은지 알아내서 작은것을 본래의 노드와 연결
+            
+        }
+    } else { // 아닐 때
+        if (data < node->data) {
+            deleteNode(node->left, data);
+        } else {
+            deleteNode(node->right, data);
+        }
+
+        return node
     }
 }
 
@@ -61,12 +108,15 @@ void preOrderPrintTree(NODE* node) {
 
 // TODO 다시 구현
 int main(void) {
+    insertNode(20);
+    insertNode(10);
+    insertNode(32);
     insertNode(4);
-    insertNode(3);
-    insertNode(2);
-    insertNode(1);
+    insertNode(13);
+    insertNode(25);
+    insertNode(55);
 
-    preOrderPrintTree(root);
+    inOrderPrintTree(root);
 
     return 0;
 }
