@@ -74,34 +74,48 @@ NODE* findNode(NODE* root, int data) {
     return NULL;
 }
 
-NODE* findMinNode() {
-
+NODE* findMinNode(NODE* node) {
+    NODE* pTemp = node;
+    while (pTemp->left != NULL) {
+        pTemp = pTemp->left;
+    }
+    return pTemp;
 }
 
 NODE* deleteNode(NODE* node, int data) {
     if (node == NULL) {
         return NULL;
     }
-
+    NODE* pTemp = NULL;
+    // TODO 다시 구현하기
     // 삭제할 노드를 찾았을 때
     if (node->data == data) {
-        // 자식 노드가 있는지 없는지 확인
-        NODE* deleteNode = node;
-        NODE* pTemp = NULL;
         // 자식이 둘다 있을 때(left, right)
         if (node->left != NULL && node->right != NULL) {
             // 둘중 누가 작은지 알아내서 작은것을 본래의 노드와 연결
-            
+            // 바로 다음 자식노드의 가장 작은 노드 반환
+            pTemp = findMinNode(node->right);
+            // 찾은 노드의 값을 삭제하려는 노드에 복사
+            node->data = pTemp->data;
+            // pTemp의 데이터를 삭제하러 재귀로 들어감
+            node->right = deleteNode(node->right, pTemp->data);
+        } else {
+            // 자식이 하나만 있을 때 && 자식이 없을 때
+            // 자식이 하나만 있을 때
+            pTemp = (node->left == NULL) ? node->right : node->left;
+            free(node);
+            return pTemp;
         }
+        // TODO node->left && node->right 디버깅 해보기
     } else { // 아닐 때
         if (data < node->data) {
-            deleteNode(node->left, data);
+            node->left = deleteNode(node->left, data);
         } else {
-            deleteNode(node->right, data);
+            node->right = deleteNode(node->right, data);
         }
-
-        return node
     }
+
+    return node;
 }
 
 
@@ -115,6 +129,11 @@ int main(void) {
     insertNode(13);
     insertNode(25);
     insertNode(55);
+    insertNode(2);
+    insertNode(5);
+    insertNode(12);
+    insertNode(15);
+    deleteNode(root,10);
 
     inOrderPrintTree(root);
 
