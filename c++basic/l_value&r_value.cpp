@@ -1,6 +1,6 @@
 // l-value = callable
 // r-value = temp
-
+1
 #include <iostream>
 #include <string>
 
